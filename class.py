@@ -3,8 +3,10 @@ from student import Student
 
 
 class Class():
-    def __init__(self, students: list[Student]):
+    def __init__(self, students : list[Student]): 
+        ### weird code, feels like piegon helicopter
         self.students = students
+
         ...
     
     # load name_list, create class object
@@ -13,21 +15,53 @@ class Class():
         file_name = f'{class_name}.csv'
         df = pd.read_csv(file_name)
         student_list = []
-        # TODO:
         for row in df.itertuples():
             student_list.append(Student(row.first_name, row.last_name, row.country))
-        # TODO: 
         # create a class obj 
         return cls(student_list)       
     
     def getStudentCount(self):
-        ...
+        print( len(self.students))
 
+    def getStudentList(self):
+        name_list = []
+        for student in self.students:
+             name_list.append(f'{student.first_name} {student.last_name}')
+        return name_list
+            
+    def toTest(self):
+        for student in self.students:
+            student.doTest()
+            ...
+            
+    def getAverageScore(self, sub : str):
+        # TODO optimize this
+        if sub not in ('kanji','bunpou','katakana'):
+            # create error warning
+            print('wrong subject name')
+        if sub in ('kanji','bunpou','katakana'):
+            sum = 0
+            for student in self.students:
+                # TODO
+                sum = sum + student.sub
+            average = sum / len(self.students)
+            return average
+                
+            
+
+
+### why so slow???
 def main():
     # load 'class 101' student's csv
     class_list = Class.loadFromCsv('101')
-    print('content')
-    print(class_list.students[0].print_info())
+    print('student count')
+    # class_list.students[0].print_info()
+    class_list.getStudentCount()
+    print('all names')
+    class_list.getStudentList()
+    print('do test')
+    class_list.toTest()
+    class_list.students[0].printScore()
     print('end')
     
     
