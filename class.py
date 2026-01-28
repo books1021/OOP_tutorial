@@ -1,11 +1,11 @@
 import pandas as pd
 from student import Student
-
+import random
 
 class Class():
-    def __init__(self, students : list[Student]): 
+    def __init__(self, student_list : list[Student]): 
         ### weird code, feels like piegon helicopter
-        self.students = students
+        self.students = student_list
 
         ...
     
@@ -42,10 +42,22 @@ class Class():
         if sub in ('kanji','bunpou','katakana'):
             sum = 0
             for student in self.students:
-                # TODO
-                sum = sum + student.sub
+                sum = sum + getattr(student,sub)
             average = sum / len(self.students)
             return average
+        
+    def seatSuffle(self):
+        # TODO seat suffle
+        # generate a permuatation sequence
+        # seat_permutation = random.shuffle(list(range(1, len(self.students))))
+        # [self.students, seat_permutation]
+        random.shuffle(self.students)
+        for seat, student in enumerate(self.students, start = 1):
+            student.seat_number = seat
+        ...
+    
+
+
                 
             
 
