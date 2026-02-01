@@ -4,7 +4,6 @@ import random
 
 class Class():
     def __init__(self, student_list : list[Student]): 
-        ### weird code, feels like piegon helicopter
         self.students = student_list
 
         ...
@@ -21,7 +20,7 @@ class Class():
         return cls(student_list)       
     
     def getStudentCount(self):
-        print( len(self.students))
+        return(len(self.students))
 
     def getStudentList(self):
         name_list = []
@@ -56,7 +55,6 @@ class Class():
             student.seat_number = seat
         ...
     
-
 
                 
             
